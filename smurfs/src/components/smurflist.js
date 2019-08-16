@@ -4,24 +4,18 @@ import { getData } from "../actions";
 import SmurfCard from "./smurfcard";
 import Loader from "react-loader-spinner";
 import SmurfForm from "./smurfForm";
+import { Container } from "shards-react";
 //stlying
 
 const SmurfList = props => {
   return (
     <>
-      <div className="smurf-list-container">
-        {props.smurfs &&
-          props.smurfs.map(smurf => <SmurfCard key={smurf.id} smurf={smurf} />)}
-      </div>
-
-      <button onClick={props.getData}>
-        {props.isLoading ? (
-          <Loader type="BallTriangle" color="#FBC428" height="50" width="100" />
-        ) : (
-          "Get Smurfed"
-        )}
-      </button>
-      <SmurfForm />
+      <Container className="smurf-list-container">
+        {props.smurfs.map(smurf => (
+          <SmurfCard key={smurf.id} smurf={smurf} />
+        ))}
+        {props.getData()}
+      </Container>
     </>
   );
 };
